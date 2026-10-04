@@ -1,7 +1,10 @@
-# bats — behavioral tests over chezmoi output, not the dotfiles text.
+# Behavioral tests over chezmoi output, not the dotfiles text.
+
 setup() {
     TESTTEMP="$(mktemp -d)"
-    chezmoi apply --destination "$TESTTEMP" --config <(printf 'sourceDir = "%s"\n' "$PWD")
+    DEST="$TESTTEMP/dest"
+    printf 'sourceDir = "%s"\n' "$PWD" >"$TESTTEMP/omni-config.toml"
+    chezmoi apply --destination "$DEST" --config "$TESTTEMP/omni-config.toml"
 }
 
 teardown() {
@@ -9,15 +12,15 @@ teardown() {
 }
 
 @test "gitconfig renders the user from chezmoidata" {
-    grep -q "name = Wyatt Au" "$TESTTEMP/.gitconfig"
-    grep -q "defaultBranch = main" "$TESTTEMP/.gitconfig"
+    grep -q "name = Wyatt Au" "$DEST/.gitconfig"
+    grep -q "defaultBranch = main" "$DEST/.gitconfig"
 }
 
 @test "bashrc sources the drop-in dir" {
-    grep -q ".bashrc.d" "$TESTTEMP/.bashrc"
+    grep -q ".bashrc.d" "$DEST/.bashrc"
 }
 
 @test "drop-in lands with exec bit and editor pin" {
-    [ -x "$TESTTEMP/.bashrc.d/10-omni.sh" ]
-    grep -q 'EDITOR="nvim"' "$TESTTEMP/.bashrc.d/10-omni.sh"
+    [ -x "$DEST/.bashrc.d/10-omni.sh" ]
+    grep -q 'EDITOR="nvim"' "$DEST/.bashrc.d/10-omni.sh"
 }
