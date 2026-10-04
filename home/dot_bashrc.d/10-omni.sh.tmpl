@@ -1,0 +1,7 @@
+# PATH hygiene + editor pin. Sourced by .bashrc (order = numeric prefix).
+export EDITOR="{{ .omni.editor }}"
+export VISITOR="$EDITOR"
+case ":$PATH:" in
+  *":$HOME/.local/bin:"*) ;;
+  *) export PATH="$HOME/.local/bin:$PATH" ;;
+esac

@@ -1,0 +1,16 @@
+{
+  // Image flavor: zero-setup gate toolchain.
+  "name": "OmniDotfiles",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers-extra/features/bash-command:1": { "command": "apt-get update && apt-get install -y bats" }
+  },
+  "postCreateCommand": "curl -sSfL https://get.chezmoi.io | sh -s -- -b /usr/local/bin && apt-get update && apt-get install -y shellcheck shfmt bats",
+  "customizations": {
+    "vscode": {
+      "extensions": ["mads-hartmann.bash-ide-vscode", "timonwong.shellcheck", "tekumara.typos-vscode", "EditorConfig.EditorConfig", "github.vscode-github-actions"],
+      "settings": { "editor.formatOnSave": true }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+# Gates: shellcheck + shfmt + bats. The dry-run apply matrix runs in ubuntu
+# AND arch containers — CachyOS parity without the hardware (ADR-0001).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 6 1 * *" # monthly bitrot
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y shellcheck bats && curl -sSfL https://get.chezmoi.io | sh -s -- -b /usr/local/bin
+      - run: make ci
+
+  arch:
+    runs-on: ubuntu-latest
+    container: archlinux:base-devel
+    steps:
+      - uses: actions/checkout@v4
+      - run: pacman -Syu --noconfirm shellcheck shfmt bats curl
+      - run: curl -sSfL https://get.chezmoi.io | sh -s -- -b /usr/local/bin
+      - run: make ci
+
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y shellcheck
+      - run: ./scripts/check-contract.sh

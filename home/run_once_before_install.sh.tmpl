@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Runs once, before other files are applied (chezmoi run_once_ semantics).
+set -euo pipefail
+mkdir -p "$HOME/.local/bin"
+echo "omni dotfiles: base dirs ready"

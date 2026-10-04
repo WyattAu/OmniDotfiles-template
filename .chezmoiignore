@@ -1,0 +1,6 @@
+# Files in home/ that must NOT land on a given host. Templates evaluated
+# per-host — e.g. skip Linux bits on Windows.
+{{- if ne .chezmoi.os "linux" }}
+.bashrc.d/*
+{{- end }}
+README.md

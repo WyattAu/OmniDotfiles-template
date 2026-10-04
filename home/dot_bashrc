@@ -1,0 +1,5 @@
+# Managed by chezmoi. Keep it three lines: source the drop-in dir, done.
+for f in "$HOME"/.bashrc.d/*.sh; do
+  # shellcheck source=/dev/null
+  [ -r "$f" ] && . "$f"
+done

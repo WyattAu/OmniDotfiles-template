@@ -1,0 +1,6 @@
+# Single source of truth for template values. Host-specific overrides live
+# in .chezmoihostname.toml.* files (not committed).
+[omni]
+name = "Wyatt Au"
+email = "wyatt_au@protonmail.com"
+editor = "nvim"
