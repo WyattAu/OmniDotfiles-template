@@ -22,7 +22,7 @@ teardown() {
     grep -q ".bashrc.d" "$DEST/.bashrc"
 }
 
-@test "drop-in lands with exec bit and editor pin" {
-    [ -x "$DEST/.bashrc.d/10-omni.sh" ]
+@test "drop-in lands with editor pin (sourced, not executed — no +x needed)" {
+    [ -f "$DEST/.bashrc.d/10-omni.sh" ]
     grep -q 'EDITOR="nvim"' "$DEST/.bashrc.d/10-omni.sh"
 }
