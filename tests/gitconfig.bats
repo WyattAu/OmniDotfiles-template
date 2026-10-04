@@ -1,7 +1,7 @@
 # bats — behavioral tests over chezmoi output, not the dotfiles text.
 setup() {
     TESTTEMP="$(mktemp -d)"
-    chezmoi apply --destination "$TESTTEMP" --config-file <(printf 'sourceDir = "%s"\n' "$PWD")
+    chezmoi apply --destination "$TESTTEMP" --config <(printf 'sourceDir = "%s"\n' "$PWD")
 }
 
 teardown() {
