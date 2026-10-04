@@ -8,7 +8,7 @@ devcontainers. Part of the [WyattAu Omni family](https://github.com/WyattAu?tab=
 ## Start here
 
 1. `home/` is the target home: `dot_gitconfig.tmpl` → `~/.gitconfig`, etc.
-2. Values live once in `.chezmoidata/defaults.toml`; per-host overrides
+2. Values live once in `home/.chezmoidata/defaults.toml`; per-host overrides
    stay local (`.chezmoihostname.toml.*`).
 3. Door: nix+direnv / devcontainer(image|nix) — `./scripts/bootstrap.sh`.
 4. `make ci` — lint + bats, plus CI's arch-container leg.

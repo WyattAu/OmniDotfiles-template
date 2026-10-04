@@ -22,7 +22,7 @@ contribution rules: [CONTRIBUTING](CONTRIBUTING.md); the estate-wide contract:
 
 ```
 OmniDotfiles-template/
-├── .chezmoidata/defaults.toml   single source of truth for template values
+├── home/.chezmoidata/           single source of truth (inside the source dir)
 ├── home/                        target home (dot_*.tmpl, drop-in dirs, run_once hooks)
 ├── tests/*.bats                 behavioral tests over a scratch applied home
 ├── scripts/ + Makefile          gates (make ci == CI)

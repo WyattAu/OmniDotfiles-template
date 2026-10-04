@@ -3,7 +3,9 @@
 setup() {
     TESTTEMP="$(mktemp -d)"
     DEST="$TESTTEMP/dest"
-    printf 'sourceDir = "%s"\n' "$PWD" >"$TESTTEMP/omni-config.toml"
+    mkdir -p "$DEST"
+    # home/ IS the chezmoi source dir (repo-root files are repo docs, not targets)
+    printf 'sourceDir = "%s"\n' "$PWD/home" >"$TESTTEMP/omni-config.toml"
     chezmoi apply --destination "$DEST" --config "$TESTTEMP/omni-config.toml"
 }
 
