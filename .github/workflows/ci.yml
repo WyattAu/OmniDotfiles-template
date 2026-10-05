@@ -20,7 +20,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: sudo apt-get update && sudo apt-get install -y shellcheck shfmt bats && curl -sSfL https://get.chezmoi.io | sh -s -- -b /usr/local/bin
       - run: make ci
 
@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     container: archlinux:base-devel
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: pacman -Syu --noconfirm shellcheck shfmt bats curl
       - run: curl -sSfL https://get.chezmoi.io | sh -s -- -b /usr/local/bin
       - run: make ci
@@ -36,6 +36,6 @@ jobs:
   contract:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: sudo apt-get update && sudo apt-get install -y shellcheck
       - run: ./scripts/check-contract.sh
