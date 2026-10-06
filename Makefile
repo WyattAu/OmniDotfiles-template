@@ -1,5 +1,5 @@
 # Thin wrapper over scripts/ — the same verbs in every Omni template.
-.PHONY: bench bench-update test lint fmt apply-dry contract ci
+.PHONY: bench bench-update repro test lint fmt apply-dry contract ci
 
 test:
 	./scripts/test.sh
@@ -18,6 +18,9 @@ contract:
 
 ## What CI gates before merge (mirror of .github/workflows/ci.yml):
 ci: contract lint test
+
+repro:
+	./scripts/repro-check.sh
 
 bench:
 	./scripts/bench-budget.sh
