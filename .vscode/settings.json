@@ -1,4 +1,8 @@
 {
   "editor.formatOnSave": true,
-  "[shellscript]": { "editor.defaultFormatter": "foxundermoon.shell-format" }
+  "workbench.colorTheme": "Shroom Space",
+  "workbench.iconTheme": "vs-seti",
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
 }
