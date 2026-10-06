@@ -15,9 +15,8 @@ mkdir -p bench
 # budget: apply chezmoi to a scratch home (same flow as the bats suite) and
 # time a real interactive login shell.
 now_ms() {
-  python3 -c 'import time; print(int(time.time() * 1000))'
+    python3 -c 'import time; print(int(time.time() * 1000))'
 }
-
 
 scratch="$(mktemp -d)"
 trap 'rm -rf "$scratch"' EXIT
@@ -30,7 +29,7 @@ start="$(now_ms)"
 env HOME="$dest" TERM=dumb bash -i -c 'exit' >/dev/null 2>&1 || true
 end="$(now_ms)"
 
-printf 'shell-startup-ms\t%s\tms\tinfo\n' "$((end - start))" > "$CURRENT"
+printf 'shell-startup-ms\t%s\tms\tinfo\n' "$((end - start))" >"$CURRENT"
 
 python3 scripts/compare-bench.py "$BASELINE" "$CURRENT" \
-  --threshold-pct "$THRESHOLD_PCT" "${UPDATE[@]+"${UPDATE[@]}"}"
+    --threshold-pct "$THRESHOLD_PCT" "${UPDATE[@]+"${UPDATE[@]}"}"
