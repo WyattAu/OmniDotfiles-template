@@ -21,6 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
       - run: sudo apt-get update && sudo apt-get install -y shellcheck shfmt bats && curl -sSfL https://get.chezmoi.io | sh -s -- -b /usr/local/bin
       - run: make ci
 
@@ -29,6 +31,8 @@ jobs:
     container: archlinux:base-devel
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
       - run: pacman -Syu --noconfirm shellcheck shfmt bats curl
       - run: curl -sSfL https://get.chezmoi.io | sh -s -- -b /usr/local/bin
       - run: make ci
@@ -37,6 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
       - run: sudo apt-get update && sudo apt-get install -y shellcheck
       - run: ./scripts/check-contract.sh
 
@@ -47,6 +53,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
       - run: sudo apt-get update && sudo apt-get install -y shellcheck shfmt bats && curl -sSfL https://get.chezmoi.io | sh -s -- -b /usr/local/bin
       - run: make bench
 
@@ -58,5 +66,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
       - run: sudo apt-get update && sudo apt-get install -y shellcheck shfmt bats && curl -sSfL https://get.chezmoi.io | sh -s -- -b /usr/local/bin
       - run: make repro
+
